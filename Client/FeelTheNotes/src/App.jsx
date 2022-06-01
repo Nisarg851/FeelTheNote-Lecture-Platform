@@ -1,24 +1,21 @@
-import MainHeader from './components/Header/MainHeader';
-import ImageCarousel from './components/IndexImageCarouselContainer/ImageCarousel';
-import MeetInitiator from './components/IndexStartMeetingContainer/MeetInitiator';
-import {Grid, Box} from '@mui/material';
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import CallPage from "./components/CallPage/CallPage";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
+import HomePage from "./components/HomePage/HomePage";
 import './App.css'
+import { Suspense } from "react";
 
 const App = () => {
   return(
-    <Box>
-      <Grid container rowSpacing={{md:14}}>
-        <Grid item xs={12}>
-          <MainHeader/> 
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <MeetInitiator/>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <ImageCarousel/>
-        </Grid>
-      </Grid>
-    </Box>
+    <Router>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Routes>
+          <Route exact path="/:id" element={<CallPage/>} />
+          <Route exact path="/" element={<HomePage/>} />
+          <Route path="*" element={<ErrorPage/>} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 

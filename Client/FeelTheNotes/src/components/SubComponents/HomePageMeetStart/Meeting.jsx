@@ -2,9 +2,9 @@ import { Button, Container, Grid, TextField } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import VideocamIcon from '@mui/icons-material/Videocam';
 import KeyboardRoundedIcon from '@mui/icons-material/KeyboardRounded';
-import "./MeetInitiator.css"
+import "./Meeting.css"
 
-const MeetInitiator = () => {
+const Meeting = () => {
     return(
         <Container sx={{width:"80%"}}>
             <h1> Welcome back,</h1>
@@ -13,8 +13,7 @@ const MeetInitiator = () => {
                 columnSpacing={2}
                 rowSpacing={2}
                 justifyContent="start"
-                alignItems="center"
-                >
+                alignItems="center">
                 <Grid item xs={12} md="auto">
                     <Button variant="contained" 
                         color="primary"
@@ -34,7 +33,7 @@ const MeetInitiator = () => {
                                 <KeyboardRoundedIcon />
                               </InputAdornment>
                             ),
-                          }}/>
+                        }}/>
                 </Grid>
                 <Grid item xs={12} md="auto">
                     <Button>Join</Button>
@@ -44,4 +43,4 @@ const MeetInitiator = () => {
     );
 }
 
-export default MeetInitiator;
+export default Meeting;

@@ -1,0 +1,10 @@
+.footer{
+    position: absolute;
+    width: 100%;
+    bottom: 3rem;
+    color: white;
+}
+
+.id-time-code{
+    padding-left: 1rem;
+}
