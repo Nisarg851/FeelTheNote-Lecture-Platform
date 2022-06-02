@@ -29,19 +29,19 @@ const CallPageFooter = () => {
                                 <MicIcon/>
                         </IconButton>
                         <IconButton 
-                            aria-label="upload picture" 
+                            aria-label="Videocam" 
                             component="span"
                             sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
                             <Videocam/>
                         </IconButton>
                         <IconButton 
-                            aria-label="upload picture" 
+                            aria-label="Presentation" 
                             component="span"
                             sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
                                 <PresentToAllIcon/>
                         </IconButton>
                         <IconButton 
-                            aria-label="upload picture" 
+                            aria-label="Callend" 
                             component="span"
                             sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
                                 <CallEndIcon/>
@@ -51,7 +51,7 @@ const CallPageFooter = () => {
                         container
                         justifyContent="end">
                         <IconButton 
-                            aria-label="upload picture" 
+                            aria-label="More" 
                             component="span"
                             sx={{color:"black", margin:"0.5rem", float:"right", backgroundColor:"white"}}>
                             <MoreVertIcon/>
