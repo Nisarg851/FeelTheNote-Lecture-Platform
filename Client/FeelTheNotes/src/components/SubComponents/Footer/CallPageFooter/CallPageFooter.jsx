@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Videocam from "@mui/icons-material/Videocam";
 import VideocamOffIcon from '@mui/icons-material/VideocamOff';
 import MicIcon from '@mui/icons-material/Mic';
@@ -8,7 +10,29 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Button, Grid, IconButton } from "@mui/material";
 import "./CallPageFooter.css";
 
-const CallPageFooter = () => {
+const CallPageFooter = props => {
+
+    const [cameraIsOn, toggleCamera] = useState(false);
+    const [audioIsOn, toggleAudio] = useState(false);
+    const [presentationIsOn, togglePresentation] = useState(false);
+
+    const audioButtonToggle = () => {
+        props.audioButtonToggle(!audioIsOn);
+        toggleAudio(!audioIsOn);
+    }
+    
+    const cameraButtonToggle = () => {
+        console.log("click method: before click: "+cameraIsOn);
+        props.cameraButtonToggle(!cameraIsOn);
+        toggleCamera(!cameraIsOn);
+        // console.log("click method: after click: "+cameraIsOn);
+    }
+
+    const presentationButtonToggle = () => {
+        props.presentationButtonToggle(!presentationIsOn);
+        togglePresentation(!presentationIsOn);
+    }
+
     return(
         <div className="footer">
             <h4 className="id-time-code">You</h4>
@@ -22,22 +46,40 @@ const CallPageFooter = () => {
                     <Grid item xs={10} md={6}
                         container
                         justifyContent={{xs:"start",md:"center"}}>
-                        <IconButton 
-                            aria-label="Mike" 
+                            <button className={(audioIsOn ? "active-button" : "inactive-button")+" icon-button"}
+                                onClick={audioButtonToggle}>
+                                    {audioIsOn ? <MicIcon/> : <MicOffIcon/>}
+                            </button>
+                            <button className={(cameraIsOn ? "active-button" : "inactive-button")+" icon-button"}
+                                onClick={cameraButtonToggle}>
+                                    {cameraIsOn ? <Videocam/> : <VideocamOffIcon/>}
+                            </button>
+                            <button className={(presentationIsOn ? "active-button" : "inactive-button")+" icon-button"}
+                                onClick={presentationButtonToggle}>
+                                <PresentToAllIcon/>
+                            </button>
+                            <button className="inactive-button icon-button">
+                                <CallEndIcon/>
+                            </button>
+                        {/* <IconButton 
+                            aria-label="Audio" 
                             component="span"
-                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
+                            className="active-button"
+                            onClick={audioButtonToggle}>
                                 <MicIcon/>
-                        </IconButton>
-                        <IconButton 
+                        </IconButton> */}
+                        {/* <IconButton 
                             aria-label="Videocam" 
                             component="span"
-                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
+                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}
+                            onClick={cameraButtonToggle}>
                             <Videocam/>
                         </IconButton>
                         <IconButton 
                             aria-label="Presentation" 
                             component="span"
-                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
+                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}
+                            onClick={presentationButtonToggle}>
                                 <PresentToAllIcon/>
                         </IconButton>
                         <IconButton 
@@ -45,7 +87,7 @@ const CallPageFooter = () => {
                             component="span"
                             sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
                                 <CallEndIcon/>
-                        </IconButton>
+                        </IconButton> */}
                     </Grid>
                     <Grid item xs={2} 
                         container
