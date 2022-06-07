@@ -8,14 +8,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #202124;
 }
 
 #video-call{
+    top: 0;
+    left: 0;
     position: absolute;
-    width: 100%; 
+    width: 100vw; 
     height: auto;
     object-fit: cover;
     pointer-events: none;
+    background-color: #202124;
     z-index: -1;
 }

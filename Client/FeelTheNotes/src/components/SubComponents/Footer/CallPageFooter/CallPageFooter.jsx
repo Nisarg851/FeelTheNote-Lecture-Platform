@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import Videocam from "@mui/icons-material/Videocam";
 import VideocamOffIcon from '@mui/icons-material/VideocamOff';
 import MicIcon from '@mui/icons-material/Mic';
@@ -11,6 +11,8 @@ import { Button, Grid, IconButton } from "@mui/material";
 import "./CallPageFooter.css";
 
 const CallPageFooter = props => {
+
+    const navigate = useNavigate();
 
     const [cameraIsOn, toggleCamera] = useState(false);
     const [audioIsOn, toggleAudio] = useState(false);
@@ -58,36 +60,10 @@ const CallPageFooter = props => {
                                 onClick={presentationButtonToggle}>
                                 <PresentToAllIcon/>
                             </button>
-                            <button className="inactive-button icon-button">
+                            <button className="inactive-button icon-button"
+                                onClick={() => navigate("/",{replace: true})}>
                                 <CallEndIcon/>
                             </button>
-                        {/* <IconButton 
-                            aria-label="Audio" 
-                            component="span"
-                            className="active-button"
-                            onClick={audioButtonToggle}>
-                                <MicIcon/>
-                        </IconButton> */}
-                        {/* <IconButton 
-                            aria-label="Videocam" 
-                            component="span"
-                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}
-                            onClick={cameraButtonToggle}>
-                            <Videocam/>
-                        </IconButton>
-                        <IconButton 
-                            aria-label="Presentation" 
-                            component="span"
-                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}
-                            onClick={presentationButtonToggle}>
-                                <PresentToAllIcon/>
-                        </IconButton>
-                        <IconButton 
-                            aria-label="Callend" 
-                            component="span"
-                            sx={{backgroundColor:"red", color:"white", margin:"0.5rem"}}>
-                                <CallEndIcon/>
-                        </IconButton> */}
                     </Grid>
                     <Grid item xs={2} 
                         container
