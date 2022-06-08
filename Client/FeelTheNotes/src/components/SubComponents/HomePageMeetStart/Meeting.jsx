@@ -10,17 +10,30 @@ import { useNavigate } from 'react-router-dom';
 
 import "./Meeting.css"
 
+import {getRequest, postRequest} from "../../../APIs/apiRequest";
+import {BASE_URL, SET_CALL_ID, GET_CALL_ID} from "../../../APIs/apiEndPoint";
+
 const Meeting = () => {
 
     const [callId, setCallId] = useState();
     const navigate = useNavigate();
 
-    const startCall = () => {
+    const startCall = async () => {
         const uniqueId = uuid().slice(0,8);
+        const url = BASE_URL + SET_CALL_ID + "/" + uniqueId;
+        console.log(url);
+        await postRequest(url,{peerId : "peer Unique ID from Peer.js"})
+                .then(data => console.log(data.message))
+                .catch(err => console.log("Error in request: "+err));
+
         navigate(`/${uniqueId}#init`)
     }
 
-    const joinCall = () => {
+    const joinCall = async () => {
+        const url = BASE_URL + GET_CALL_ID + "/" + callId;
+        // console.log(url);
+        await getRequest(url)
+                .then(data => console.log(data));
         navigate(`/${callId}`);
     }
 
