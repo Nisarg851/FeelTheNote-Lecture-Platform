@@ -1,12 +1,16 @@
+require("dotenv").config();
 const express = require('express');
 const app = express();
 
-app.get("/",(req,res,next)=>{
-    return res.json({data:"datal"});
-})
+const routes = require("./routes");
 
-app.listen(3000,error => {
+app.use("/",routes);
+
+const host = process.env.HOST;
+const port = process.env.PORT;
+
+app.listen(port, host, error => {
     if(error)
         console.log("Error occured: "+error);
-    console.log("Server is online...")
+    console.log(`Server is online on ${host}:${port}`);
 });
