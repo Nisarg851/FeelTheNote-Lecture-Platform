@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// data: contains the data in the body of response
+
 export const getRequest = async (url) => {
     const data = await axios.get(url)
                             .then(res => res.data)

@@ -1,25 +1,36 @@
-const fs = require("fs");   
-let callIds = JSON.parse(fs.readFileSync("CallIds.json"));
+const fs = require("fs"); 
+const Peer = require("peerjs");
+
+let peerIdOfInitiatorWithCallId = JSON.parse(fs.readFileSync("CallInitiatorIds.json"));
 
 exports.setCallId = (req, res, next) => {
     const callId = req.params.id;
     const peerId = req.body.peerId;
-    // const peerId = "peer Id";
-    // console.log(req.body);
-    callIds = {...callIds, [callId]: peerId};
-    // console.log("setCallID Called!");
-    fs.writeFileSync("CallIds.json",JSON.stringify(callIds,null,2),err => {
-        console.log(err);
-        return res.status(500).send({message:"Server error"});
-    });
-    res.status(200).send({message:"CallId saved successfully!"});
+
+    if(peerId && callId){
+        peerIdOfInitiatorWithCallId = {...peerIdOfInitiatorWithCallId, [callId]: peerId};
+        if(!peerIdOfInitiatorWithCallId)
+            return res.status(500).send({status: 0, message: "Server error"});
+
+        fs.writeFileSync("CallInitiatorIds.json",
+            JSON.stringify(peerIdOfInitiatorWithCallId,null,2),
+            err => {
+                console.log(err);
+                return res.status(500).send({status: 0, message: "Server error"});
+            });
+
+        return res.status(200).send({status: 1, message: "CallId saved successfully!"});
+    }
+
+    res.status(200).send({status: 0, message: "No valid peerId or callId provided"});
 }
 
 exports.getCallId = (req, res, next) => {
     const callId = req.params.id;
-    const peerId = callIds[callId];
-    console.log("getCallID Called! with callId: "+callId+" has PeerId: "+peerId);
+    const peerId = peerIdOfInitiatorWithCallId[callId];
+    
     if(peerId)
-        return res.status(200).json({[callId]: peerId});
-    res.status(404).send({message:"CallID not found!"});
+        return res.status(200).send({status: 1, message: "Success!", data: {[callId]: peerId}});
+
+    res.status(404).send({status: 0, message: "CallID not found!"});
 }
