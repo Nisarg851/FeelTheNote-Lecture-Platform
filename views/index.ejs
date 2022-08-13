@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <%- include('partials/commonHeader.ejs'); %>
+        <link href="/style/meetHeader.css" rel="stylesheet" type="text/css"/>
+        <link href="/style/index.css" rel="stylesheet" type="text/css"/>
+        
+        <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
+    </head>
+    <body>
+        <div class="header">
+            <div style="display: flex; justify-content: center; align-items: center">
+                <img id="logo" src="/images/FeelTheNotesIcon.png" alt=""/>
+                <div>
+                    <h1 class="text-center mb-3"> 
+                        <a href="#">Feel The Note</a>            
+                    </h1>
+                    <p class="normal-text">
+                        <i class="fa fa-user"></i>
+                        <%= user.name %>
+                    </p>
+                </div>
+            </div>
+            <%- include('partials/header'); %>
+        </div>
+        <!-- <div class="container" style="display: flex; justify-content: center; align-items: center;"> -->
+            <div style="width: 100%; height: 70%; margin-top: 5%; display: flex; justify-content: center; align-items: center;">
+                        
+                <div class="showcase-image">
+                    <img src="/images/showcase-image-2.jpg"/>
+                </div>
+
+                <!-- <div style="width: 0px; height: 100%; border-right: 2px solid black; margin-inline: 7rem;"></div> -->
+
+                <div class="card" style="margin-left: 5rem; padding-top: 7%; box-shadow: none;">
+                    <div>
+                        <div class="secondary-title" style="font-weight: bold;">
+                            Welcome, 
+                            <h6><%= user.name %></h6>
+                        </div>
+                        <p class="ternary-title" style="margin-top: 1rem;">
+                            We re-engineered the service we built for secure business meetings, Google Meet,
+                            to make it free and
+                            available for all.
+                        </p>
+                    </div>
+                    <div>
+                        <div style="margin-top: 10%; display: flex; justify-content: start; align-items: center;">
+                            <a class="primary-btn" href="/new-meeting" role="button">New Meeting</a>
+                            <b style="padding-inline: 10px;"> OR </b>
+                            <form action="join-room" style="margin-left: 1rem; display: flex;" method="POST">
+                                <div class="input-container">
+                                    <input name="room_id" type="text" class="form-control" placeholder="Enter a code or Link"
+                                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                                </div>
+                                <button class="primary-btn-outline" type="submit" id="button-addon2">Join</button>                        
+                            </form>
+                        </div>
+                        <hr style="margin: 10px 0 5px 0; ">
+                        <p>Learn more about<a href="#" style="color: #00AA97; font-weight: bold;"> Feel The Note </a></p>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

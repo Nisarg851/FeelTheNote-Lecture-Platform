@@ -1,7 +1,0 @@
-light Green + purple
-
-60 30 10 rule
-
-main: #E8F3F1
-
-Buttons: #00AA97

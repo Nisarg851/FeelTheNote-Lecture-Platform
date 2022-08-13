@@ -1,0 +1,134 @@
+<html>
+    <head>
+        <%- include('../partials/commonHeader.ejs'); %>
+        <link href="/style/login.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container"
+            style="display: flex; flex-direction: column; align-items: center;">
+            <div class="header">
+                <img id="logo" src="/images/FeelTheNotesIcon.png" alt=""/>
+                <h1>Feel The Note</h1>
+            </div>
+            <div class="container" style="display: flex; justify-content: center; align-items: center;">
+                <div style="width: 100%; height: 80%; display: flex; justify-content: center; align-items: center;">
+                    <div class="card" style="padding-top: 7%; box-shadow: none;">
+                        <div class="card-header">
+                            <p class="secondary-title">Login</p>
+                            <button id="sign-up" class="Ternary-title redirect primary-btn">Sign Up</button>
+                            <!-- <a href="/signup" type="button" class="Ternary-title redirect primary-btn">Sign Up</a> -->
+                        </div>
+                        <div class="card-body">
+                            <form action="/login" method="POST">
+                                <% if(locals.messages.success){ %>
+                                <div class="alert alert-success" role="alert">
+                                    <%= locals.messages.success %>
+                                </div>
+                                <% } %>
+                                <% if(locals.messages.error){ %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%= locals.messages.error %>
+                                </div>
+                                <% } %>
+                                <div class="input-container">
+                                    <i class="fa fa-at" style="padding-inline: 1px; font-weight: bold;"></i>
+                                    <input id="username" type="text" name="username" class="form-control" placeholder="username">
+                                    <!-- <label for="floatingInput">Enter your username</label> -->
+                                </div>
+                                <div class="input-container">
+                                    <i class="fa fa-lock" style="padding-inline: 1px;"></i>
+                                    <input id="password" type="password" name="password" placeholder="password">
+                                    <!-- <label for="floatingPassword">Enter your Password</label> -->
+                                </div>
+                                <button class="submit-btn ternary-title primary-btn" type="submit">Verify</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div style="width: 0px; height: 100%; border-right: 2px solid black; margin-inline: 7rem;"></div>
+                    
+                    <div class="card floating-card"
+                        style=<% if(locals.messages.section != "registration"){ %> "left:55%" <% } else { %> "left:10%" <% } %>> 
+                        <img class="login-image"  src="/images/login-image-1.jpg"/>
+                    </div>
+
+                    <div class="card" style="padding-top: 5%; box-shadow: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;" class="card-header">
+                            <p class="secondary-title">Signup Form</p>
+                            <button id="login" class="Ternary-title redirect primary-btn">Login</button>
+                            <!-- <a href="/login" type="button" class="Ternary-title redirect primary-btn">Login</a> -->
+                        </div>
+                        <div class="card-body">
+                            <form action="/signup" method="POST">
+                                <% if(locals.messages.success){ %>
+                                <div class="alert alert-success" role="alert">
+                                    <%= locals.messages.success %>
+                                </div>
+                                <% } %>
+                                <% if(locals.messages.err){ %>
+                                <div class="alert alert-danger" role="alert">
+                                    <%= locals.messages.err %>
+                                </div>
+                                <% } %>
+                                <div class="input-container">
+                                    <i class="fa fa-user" style="padding-inline: 1px;"></i>
+                                    <input type="text" name="name" placeholder="name">
+                                </div>
+                                <div class="input-container">
+                                    <i class="fa fa-at" style="padding-inline: 1px; font-weight: bold;"></i>
+                                    <input type="text" name="username" placeholder="username">
+                                </div>
+                                <div class="input-container">
+                                    <i class="fa fa-envelope" style="padding-inline: 1px;"></i>
+                                    <input type="email" name="email" placeholder="email">
+                                </div>
+                                <div class="input-container">
+                                    <i class="fa fa-lock" style="padding-inline: 1px;"></i>
+                                    <input type="password" name="password" placeholder="password">
+                                </div>
+                                <button class="submit-btn ternary-title primary-btn" style="width: 100%;" type="submit">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>     
+    <script>
+        const cardFloatingAnimation = {
+            floatLeft : [
+                {left: "55%"},
+                {left: "5%"},
+                {left: "15%"},
+                {left: "7%"},
+                {left: "13%"},
+                {left: "10%"}
+            ],
+            floatRight : [
+                {left: "10%"},
+                {left: "60%"},
+                {left: "50%"},
+                {left: "58%"},
+                {left: "52%"},
+                {left: "55%"}
+            ]
+        };
+        const cardFloatingAnimationTiming = {
+            duration: 800,
+            iterations: 1,
+            fill: "forwards"
+        }
+
+        const signBtn = document.querySelector("#sign-up");
+        signBtn.addEventListener('click', event => {
+            const floatingCard = document.querySelector(".floating-card");
+            floatingCard.animate(cardFloatingAnimation["floatLeft"], cardFloatingAnimationTiming);
+        });
+
+        const loginBtn = document.querySelector("#login");
+        loginBtn.addEventListener('click', event => {
+            const floatingCard = document.querySelector(".floating-card");
+            floatingCard.animate(cardFloatingAnimation["floatRight"], cardFloatingAnimationTiming);
+        })
+    </script>
+</html>
